@@ -1,0 +1,272 @@
+// FontAwesome removed - using Lucide icons instead
+@import './tailwind.css';
+// https://getbootstrap.com/docs/4.3/getting-started/theming/#variable-defaults
+
+// $dark-blue: #311847;
+// $blue: #2f6690;
+// $green: #357266;
+// $orange: #e28413;
+// $light-green: #e3e7af; // on palette but not used, yet
+
+// $font-family-sans-serif: 'montreal_serial-regular', montreal_serial-regular;
+// $font-family-monospace: Lato;
+
+// $theme-colors: (
+//   dark: $dark-blue,
+//   primary: $blue,
+//   danger: $orange,
+//   success: $green,
+// );
+
+// Tailwind gray palette (matching Bootstrap's grays)
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$grey-100: #f1f1f4; // from Plentive
+
+// these fonts are imported in public/index.html
+$font-family-sans-serif: 'Inter';
+$font-family-monospace: 'Noto Sans Mono';
+
+$jde-font-family: Inter;
+
+body {
+  // set these fonts so it looks same when generating pdf/png with puppeteer, cuz default/apple fonts won't be in puppeteer
+  // font-family: Helvetica, Arial, 'Noto Sans', sans-serif;
+  font-family: $jde-font-family;
+}
+
+.navbar-nav {
+  .nav-item {
+    color: hsl(240 5.3% 26.1%);
+    font-size: 0.875rem;
+    &.active {
+      color: hsl(240 5.9% 10%);
+      background-color: hsl(240 4.8% 95.9%);
+      border-radius: 0.75rem;
+    }
+    &.activeChild {
+      color: #3f70a1;
+      &:hover {
+        color: #3f70a1;
+      }
+    }
+    &:hover {
+      color: hsl(240 5.9% 10%);
+    }
+  }
+}
+
+.project-summary-form {
+  label {
+    font-size: 14px;
+    color: grey;
+  }
+  .section-heading {
+    font-size: 1.25rem;
+    font-weight: 500;
+    // margin-top: 1rem;
+  }
+}
+
+/* Modern table styling - Two clean variants */
+@layer components {
+  .table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    // border-collapse: collapse;
+
+    th,
+    td {
+      padding: 0.75rem;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    thead th {
+      vertical-align: bottom;
+      border-bottom: 2px solid #dee2e6;
+      font-weight: 600;
+    }
+
+    tbody td {
+      border-bottom: 1px solid #f3f4f6;
+    }
+
+    tbody tr:hover {
+      background-color: #f9fafb;
+    }
+
+    /* Right-aligned columns for numeric data */
+    th.text-right,
+    td.text-right {
+      text-align: right;
+    }
+
+    /* Bordered variant - full borders around all cells */
+    &.table-bordered {
+      border: 1px solid #dee2e6;
+      border-radius: 16px;
+
+      th,
+      td {
+        border: 1px solid #dee2e6;
+      }
+
+      tbody td {
+        border-bottom: 1px solid #dee2e6;
+      }
+    }
+  }
+}
+
+.outline-0 {
+  outline: 0 !important;
+}
+.line-height-1 {
+  line-height: 1;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.bg-jde {
+  background-color: rgb(61, 110, 159) !important;
+}
+.bg-primary-hover {
+  background-color: white;
+  :hover {
+    background-color: var(--primary);
+  }
+}
+.text-disabled {
+  color: #6c757d;
+}
+
+.reset-password-container {
+  background-color: rgb(78, 142, 155);
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  z-index: 1000;
+}
+
+.icon-btn-light {
+  opacity: 0.3;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.custom-rounded {
+  border-radius: 16px;
+}
+.custom-rounded-bottom {
+  border-radius: 0 0 16px 16px;
+}
+
+.chart-card {
+  @extend .custom-rounded;
+}
+
+.custom-rounded {
+  border-radius: 16px;
+}
+.custom-rounded-bottom {
+  border-radius: 0 0 16px 16px;
+}
+
+.group-heading {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: hsla(240, 5.3%, 26.1%, 0.9) !important;
+  border-radius: 0.275rem;
+}
+.group-heading:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+.group-item {
+  font-size: 0.875rem;
+  color: hsl(240 5.3% 26.1%);
+  border-radius: 0.75rem;
+  // padding: 0.5rem 1rem;
+  // margin: 0.25rem 0;
+}
+.group-item:hover {
+  background: rgba(0, 0, 0, 0.05) !important;
+}
+
+// .sidebar ul.list-group {
+//   .list-group-item {
+//     border-radius: 0.75rem;
+//   }
+//   button:hover {
+//     background-color: var(--primary-light);
+//     color: var(--primary);
+//   }
+//   button.active {
+//     background-color: var(--primary-light);
+//     color: var(--primary);
+//   }
+//   button.nested-active {
+//     color: var(--primary);
+//   }
+// }
+
+/* Style for the circular color buttons */
+.color-circle {
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 3px solid transparent;
+  position: relative;
+  opacity: 0.75;
+}
+
+.selected-project-health-option {
+  // border-color: #007bff;
+  opacity: 1;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.75);
+  transform: scale(1.05);
+}
+
+:root {
+  /* Gray scale - matching Bootstrap and Tailwind definitions */
+  --gray-100: #f8f9fa;
+  --gray-200: #e9ecef;
+  --gray-300: #dee2e6;
+  --gray-400: #ced4da;
+  --gray-500: #adb5bd;
+  --gray-600: #6c757d;
+  --gray-700: #495057;
+  --gray-800: #343a40;
+  --gray-900: #212529;
+  --gray-dark: #343a40;
+
+  /* Bootstrap-like theme colors - using Tailwind v4 color definitions */
+  --primary: #007bff;
+  --primary-light: #e7f1ff;
+  --danger: #dc3545;
+  --success: #28a745;
+  --warning: #ffc107;
+  --info: #17a2b8;
+
+  /* Font */
+  --primary-font: 'Inter';
+}
+
+:export {
+  jdeFontFamily: $jde-font-family;
+}

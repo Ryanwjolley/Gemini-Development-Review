@@ -1,0 +1,11 @@
+{
+  "name": "@shared/shared",
+  "version": "1.0.0",
+  "description": "Code shared between functions and UI",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo Hey, no tests here. just to share code"
+  },
+  "author": "KA aka KB",
+  "license": "ISC"
+}

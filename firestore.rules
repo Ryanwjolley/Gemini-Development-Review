@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function hasPermissions (permissions) {
+      // have a look at the constants file for a list of the permissions
+      return permissions.hasAny(request.auth.token.permissions)
+    }
+    match /{document=**} {
+      allow read, write: if hasPermissions([0]) // admin
+    }
+    match /users/{userId} {
+      allow read: if request.auth != null
+    }    
+  }
+}

@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+/* Custom theme configuration for Tailwind v4 */
+@theme {
+  /* Custom colors matching Bootstrap theme */
+  --color-light-grey: #f1f1f4;
+
+  /* Bootstrap-like grays */
+  --color-gray-100: #f8f9fa;
+  --color-gray-200: #e9ecef;
+  --color-gray-300: #dee2e6;
+  --color-gray-400: #ced4da;
+  --color-gray-500: #adb5bd;
+  --color-gray-600: #6c757d;
+  --color-gray-700: #495057;
+  --color-gray-800: #343a40;
+  --color-gray-900: #212529;
+
+  /* Primary colors - Bootstrap blue */
+  --color-primary-50: #e7f1ff;
+  --color-primary-100: #d0e3ff;
+  --color-primary-200: #a8caff;
+  --color-primary-300: #7aabff;
+  --color-primary-400: #4d8aff;
+  --color-primary-500: #007bff;
+  --color-primary-600: #0066d9;
+  --color-primary-700: #0052b3;
+  --color-primary-800: #003d8c;
+  --color-primary-900: #002966;
+
+  /* Success - Bootstrap green */
+  --color-success-50: #d4edda;
+  --color-success-100: #c3e6cb;
+  --color-success-200: #b1dfbb;
+  --color-success-300: #9fd8ab;
+  --color-success-400: #8dd19b;
+  --color-success-500: #28a745;
+  --color-success-600: #218838;
+  --color-success-700: #1e7e34;
+  --color-success-800: #1c7430;
+  --color-success-900: #155724;
+
+  /* Danger - Bootstrap red/orange */
+  --color-danger-50: #ffe5d9;
+  --color-danger-100: #ffcfb3;
+  --color-danger-200: #ffb38c;
+  --color-danger-300: #ff9666;
+  --color-danger-400: #ff7a40;
+  --color-danger-500: #dc3545;
+  --color-danger-600: #c82333;
+  --color-danger-700: #bd2130;
+  --color-danger-800: #b21f2d;
+  --color-danger-900: #a71d2a;
+
+  /* Warning - Bootstrap yellow */
+  --color-warning-50: #fff3cd;
+  --color-warning-100: #ffecb5;
+  --color-warning-200: #ffe69c;
+  --color-warning-300: #ffe083;
+  --color-warning-400: #ffda6a;
+  --color-warning-500: #ffc107;
+  --color-warning-600: #e0a800;
+  --color-warning-700: #c69500;
+  --color-warning-800: #ad8200;
+  --color-warning-900: #936f00;
+
+  /* Info - Bootstrap cyan */
+  --color-info-50: #d1ecf1;
+  --color-info-100: #bee5eb;
+  --color-info-200: #abdee5;
+  --color-info-300: #98d7df;
+  --color-info-400: #85d0d9;
+  --color-info-500: #17a2b8;
+  --color-info-600: #138496;
+  --color-info-700: #117a8b;
+  --color-info-800: #0f7080;
+  --color-info-900: #0d6675;
+
+  /* Semantic UI Colors */
+  --primary: #2185d0;
+  --primary-hover: #1678c2;
+  --primary-active: #1a69a4;
+
+  --secondary: #1b1c1d;
+  --secondary-hover: #27292a;
+  --secondary-active: #343637;
+
+  --success: #21ba45;
+  --success-hover: #16ab39;
+  --success-active: #198f35;
+
+  --danger: #db2828;
+  --danger-hover: #d01919;
+  --danger-active: #ca1010;
+
+  /* Font families */
+  --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-family-mono: 'Noto Sans Mono', ui-monospace, monospace;
+
+  /* Custom spacing to match Bootstrap */
+  --spacing-0: 0px;
+  --spacing-1: 0.25rem;    /* 4px */
+  --spacing-2: 0.5rem;     /* 8px */
+  --spacing-3: 1rem;       /* 16px */
+  --spacing-4: 1.5rem;     /* 24px */
+  --spacing-5: 3rem;       /* 48px */
+}
+
+/* Custom utility classes to preserve existing patterns */
+@layer utilities {
+  .cursor-pointer {
+    cursor: pointer;
+  }
+
+  .outline-0 {
+    outline: 0 !important;
+  }
+
+  .line-height-1 {
+    line-height: 1;
+  }
+}

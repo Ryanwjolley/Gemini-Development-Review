@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Jones & DeMille" />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <style>
+      /*
+        Note that previously the .ttf Lato fonts were used, and it was discovered
+        that the hyphen U+2010 character wasn't displaying in Chrome (though it 
+        did display fine in Safari).  Somehow I found out that the woff2 version of 
+        the font displayed OK. Here's some sources I looked at it trying to figure out 
+        how to display that hyphen -
+
+        https://www.bram.us/2021/12/18/broken-hyphens-in-chromium-96-an-explanation-and-fix/
+        https://bugs.chromium.org/p/chromium/issues/detail?id=1267606
+        https://stackoverflow.com/questions/65492329/css-hyphens-not-working-properly-in-chrome-when-using-only-two-words
+      */
+
+      @font-face {
+        font-family: 'Inter';
+        src: url(%PUBLIC_URL%/font/Inter-VariableFont_slnt-wght.ttf)
+          format('truetype');
+        font-display: auto;
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url(%PUBLIC_URL%/font/Inter-SemiBold.ttf) format('truetype');
+        font-display: auto;
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: 'Noto Sans Mono';
+        src: url(%PUBLIC_URL%/font/NotoSansMono-Regular.ttf) format('truetype');
+        font-display: auto;
+      }
+    </style>
+    <title>Jones & DeMille</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
+</html>

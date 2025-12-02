@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="Jones & DeMille" />
+    <link rel="apple-touch-icon" href="/logo192.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <style>
+      /*
+        Note that previously the .ttf Lato fonts were used, and it was discovered
+        that the hyphen U+2010 character wasn't displaying in Chrome (though it
+        did display fine in Safari).  Somehow I found out that the woff2 version of
+        the font displayed OK. Here's some sources I looked at it trying to figure out
+        how to display that hyphen -
+
+        https://www.bram.us/2021/12/18/broken-hyphens-in-chromium-96-an-explanation-and-fix/
+        https://bugs.chromium.org/p/chromium/issues/detail?id=1267606
+        https://stackoverflow.com/questions/65492329/css-hyphens-not-working-properly-in-chrome-when-using-only-two-words
+      */
+
+      @font-face {
+        font-family: 'Inter';
+        src: url(/font/Inter-VariableFont_slnt-wght.ttf)
+          format('truetype');
+        font-display: auto;
+      }
+      @font-face {
+        font-family: 'Inter';
+        src: url(/font/Inter-SemiBold.ttf) format('truetype');
+        font-display: auto;
+        font-weight: bold;
+      }
+      @font-face {
+        font-family: 'Noto Sans Mono';
+        src: url(/font/NotoSansMono-Regular.ttf) format('truetype');
+        font-display: auto;
+      }
+    </style>
+    <title>Jones & DeMille</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/index.js"></script>
+  </body>
+</html>

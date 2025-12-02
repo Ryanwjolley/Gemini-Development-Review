@@ -1,0 +1,61 @@
+// found this wonderful solution for header/footer (look for Chris Moschini's answer, it only had 4 votes when Kevin found it) - https://stackoverflow.com/questions/1360869/how-to-use-html-to-print-header-and-footer-on-every-printed-page-of-a-document
+// but react-to-print has some suggestions for print styles too: https://www.npmjs.com/package/react-to-print
+$print-header-height: 145px;
+$print-footer-height: 50px;
+$print-header-color: rgb(54, 113, 125);
+
+@page {
+  size: letter;
+  margin: 0.5in;
+}
+
+@media print {
+  table.paging thead td,
+  table.paging tfoot td {
+    height: $print-header-height;
+    &.hide-header {
+      height: 0;
+    }
+  }
+}
+
+header,
+footer {
+  width: 100%;
+  height: $print-header-height;
+}
+
+footer {
+  height: $print-footer-height;
+  // background: #eee; //just added this for testing
+}
+
+header {
+  position: absolute;
+  top: 0;
+}
+
+@media print {
+  .badge {
+    // cuz bootstrap badges seem to have black border when printed 🤷‍♂️
+    border: none !important;
+  }
+  .page-break-inside-avoid {
+    page-break-inside: avoid;
+  }
+  header,
+  footer {
+    position: fixed;
+  }
+
+  footer {
+    bottom: 0;
+  }
+
+  .bg-print-header {
+    background-color: $print-header-color !important;
+  }
+  .text-print-header {
+    color: $print-header-color !important;
+  }
+}

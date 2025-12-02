@@ -1,0 +1,23 @@
+{
+  "projects": {
+    "default": "repo-template-demo",
+    "dev": "repo-template-demo-dev"
+  },
+  "targets": {
+    "repo-template-demo": {
+      "storage": {
+        "app": [
+          "repo-template-demo.appspot.com"
+        ]
+      }
+    },
+    "repo-template-demo-dev": {
+      "storage": {
+        "app": [
+          "repo-template-demo-dev.appspot.com"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

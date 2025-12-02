@@ -1,0 +1,14 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
+      allow read, write: if request.auth.token.permissions.toSet().hasAll([0]) // 0 = admin
+      // this below didn't work cuz of firebase bug so above was suggested by Firebase support as a workaround.
+      // request.auth.token.permissions.hasAll([0]) // 0 = admin
+      // Kevin's StackOverflow question - https://stackoverflow.com/questions/75701390/firebase-storage-rule-check-if-custom-claims-list-contains-value-hasall-hasany
+    }
+    match /users/{userId}/photos/default.jpg {
+      allow read: if true
+    }   
+  }
+}

@@ -1,0 +1,25 @@
+.react-datepicker-popper {
+  z-index: 9999;
+}
+
+.react-datepicker__input-container {
+  width: inherit;
+}
+
+.react-datepicker-wrapper {
+  width: 100%;
+}
+
+.react-datepicker-time__input {
+  min-width: 150px;
+}
+
+.react-datepicker__close-icon::after {
+  background-color: var(--gray-400);
+}
+
+.datepicker-inside-popover {
+  .react-datepicker__month-container {
+    float: none;
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "name": "jde-app-template",
+  "version": "0.0.0",
+  "private": true,
+  "dependencies": {
+    "@floating-ui/react": "^0.27.16",
+    "@shared/shared": "file:./functions/shared",
+    "axios": "^1.12.2",
+    "clsx": "^2.1.1",
+    "dayjs": "^1.11.18",
+    "file-saver": "^2.0.2",
+    "firebase": "^11.4.0",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.548.0",
+    "nanoid": "^5.0.9",
+    "react-datepicker": "^8.8.0",
+    "react-dropzone": "^14.3.5",
+    "react-number-format": "^5.4.3",
+    "react-router": "^7.9.4",
+    "react-select": "^5.10.2",
+    "react-to-print": "^3.2.0",
+    "react-toastify": "^11.0.2",
+    "sass": "^1.51.0",
+    "tailwind-merge": "^3.3.1"
+  },
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "favicon:dev": "cp public/img/favicon-dev.ico public/favicon.ico",
+    "favicon:live": "cp public/img/favicon.ico public/favicon.ico",
+    "start:functions:emulators": "cd functions && npm run serve:emulators",
+    "seed:emulators:init": "node scripts/seedEmulators.js",
+    "start:emulators": "npm run favicon:dev && cp .env.default .env && VITE_USE_EMULATORS=true VITE_API_URL_OVERRIDE=http://localhost:5010/repo-template-demo/us-central1/api vite --port 3010",
+    "start:live": "npm run favicon:live && cp .env.default .env && VITE_API_URL_OVERRIDE=http://localhost:5001/repo-template-demo/us-central1/api vite --port 3010",
+    "start": "npm run favicon:dev && cp .env.dev .env && VITE_API_URL_OVERRIDE=http://localhost:5001/repo-template-demo-dev/us-central1/api vite --port 3010",
+    "build:dev": "npm run favicon:dev && cp .env.dev .env && rm -rf ./build && vite build",
+    "build:live": "npm run favicon:live && cp .env.default .env && rm -rf ./build && vite build",
+    "deploy:live": "firebase use default && npm run build:live && firebase deploy",
+    "deploy:live:hosting": "firebase use default && npm run build:live && firebase deploy --only hosting",
+    "deploy:dev": "firebase use dev && npm run build:dev && firebase deploy --only functions:api,hosting",
+    "deploy:dev:functions": "firebase use dev && firebase deploy --only functions:api",
+    "deploy:dev:hosting": "firebase use dev && npm run build:dev && firebase deploy --only hosting",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ],
+    "rules": {
+      "prefer-const": [
+        "error"
+      ]
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "autoprefixer": "^10.4.21",
+    "chalk": "^4.1.2",
+    "cross-env": "^10.1.0",
+    "inquirer": "^8.2.6",
+    "postcss": "^8.5.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "replace-in-file": "^7.1.0",
+    "tailwindcss": "^4.1.14",
+    "vite": "^7.1.10"
+  }
+}

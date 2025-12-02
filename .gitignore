@@ -1,0 +1,40 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# production
+/build
+
+# testing
+/coverage
+
+# misc
+.DS_Store
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+firebase-debug.log
+ui-debug.log
+functions/config
+.runtimeconfig.json
+.firebase/*
+functions/firestore-debug.log
+functions/.env*
+functions/.cache
+# ignore favicon cuz it's copied here during build
+public/favicon.ico
+
+# Firebase emulator data (optional: remove this line to commit seed data)
+/emulator-data
+
+# Setup script configuration (generated, not committed)
+.setup-config.json
