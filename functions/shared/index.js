@@ -21,6 +21,7 @@ const schema = require('./schema')
 module.exports = {
   ...constants,
   ...inputValidators,
+  ...schema,
   passwordInput,
   toDate,
   format,
@@ -35,5 +36,4 @@ module.exports = {
   mapDocsArray,
   generateId,
   phoneUtil,
-  schema,
 }

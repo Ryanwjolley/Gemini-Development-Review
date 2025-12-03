@@ -3,7 +3,7 @@ import { setGlobalState } from '../../globalState'
 import { PrintContainer } from '../Print'
 import ExportErrorHandler from './ExportErrorHandler'
 import Orientation from './Orientation'
-import { exportFileTypes } from '@shared/shared'
+import { exportFileTypes } from '@shared'
 // import SomeComponent from '../SomeComponent'
 
 const ExportComponents = {

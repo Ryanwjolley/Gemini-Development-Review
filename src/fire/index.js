@@ -21,16 +21,18 @@ import { getStorage } from 'firebase/storage'
 import _ from 'lodash'
 import api, { setApiAuth } from '../api'
 import toast from '../components/Toast'
+import { useMockAuth, getMockUser, mockSignIn as mockAuthSignIn, mockSignOut as mockAuthSignOut, mockUsers } from './mockAuth'
 
 const mapDocsArray = s => s.docs.map(doc => ({ id: doc.id, ...doc.data() }))
 
+// Use demo project ID for emulators
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY || 'demo-api-key',
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN || 'demo-project.firebaseapp.com',
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || 'demo-repo-template',
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET || 'demo-project.appspot.com',
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID || '123456789',
+  appId: import.meta.env.VITE_FIREBASE_APP_ID || '1:123456789:web:demo',
 }
 
 const app = initializeApp(firebaseConfig)
@@ -40,7 +42,7 @@ const db = getFirestore(app)
 
 // Connect to Firebase emulators when VITE_USE_EMULATORS is set
 if (import.meta.env.VITE_USE_EMULATORS === 'true') {
-  connectAuthEmulator(auth, 'http://localhost:9410')
+  connectAuthEmulator(auth, 'http://localhost:9410', { disableWarnings: true })
   connectFirestoreEmulator(db, 'localhost', 8410)
 }
 
@@ -55,10 +57,26 @@ export const setRemoveGlobalListeners = fn => {
 
 export const signOut = async () => {
   removeGlobalListeners()
-  await auth.signOut()
+  if (useMockAuth()) {
+    mockAuthSignOut()
+  } else {
+    await auth.signOut()
+  }
 }
 
 export const initApp = callback => {
+  // Use mock auth for testing
+  if (useMockAuth()) {
+    const mockUser = getMockUser()
+    if (mockUser) {
+      callback({ user: mockUser })
+    } else {
+      callback({ user: null })
+    }
+    return
+  }
+
+  // Regular Firebase auth
   onAuthStateChanged(auth, async user => {
     if (user) {
       let token = await user.getIdTokenResult(true)
@@ -79,8 +97,12 @@ export const initApp = callback => {
   })
 }
 
-export const signIn = ({ email, password }) =>
-  signInWithEmailAndPassword(auth, email, password)
+export const signIn = ({ email, password }) => {
+  if (useMockAuth()) {
+    return Promise.resolve(mockAuthSignIn(email))
+  }
+  return signInWithEmailAndPassword(auth, email, password)
+}
 
 export const signInWithCustomToken = token =>
   authSignInWithCustomToken(auth, token)
@@ -122,6 +144,12 @@ export const getUserPhotoUrl = userId =>
 */
 
 export const watchUsers = callback => {
+  // Use mock users for testing
+  if (useMockAuth()) {
+    callback(_.sortBy(mockUsers, 'name'))
+    return _.noop
+  }
+
   const removeListener = onSnapshot(
     usersRef,
     s => callback(_.sortBy(mapDocsArray(s), 'name')),
@@ -142,3 +170,5 @@ export const watchErrors = callback => {
 }
 
 export const deleteError = id => deleteDoc(doc(db, 'errors', id))
+
+export { db, auth }

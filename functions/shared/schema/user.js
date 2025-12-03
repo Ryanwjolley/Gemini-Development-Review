@@ -28,6 +28,13 @@
  *
  * @type {UserSchema}
  */
+const userRoles = {
+  public: 'Public',
+  cityUser: 'City User',
+  reviewer: 'Reviewer',
+  admin: 'Admin',
+}
+
 const user = {
   collectionName: 'users',
   fields: {
@@ -47,6 +54,19 @@ const user = {
       type: 'string',
       format: 'email',
       label: 'Email Address',
+    },
+    avatar: {
+      type: 'string',
+      label: 'Avatar URL',
+    },
+    role: {
+      type: 'string',
+      label: 'User Role',
+      enum: Object.values(userRoles),
+    },
+    city: {
+      type: 'string',
+      label: 'City',
     },
     permissions: {
       type: 'array',
@@ -70,4 +90,4 @@ const user = {
   },
 }
 
-module.exports = user
+module.exports = { user, userRoles }

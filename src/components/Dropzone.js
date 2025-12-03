@@ -3,7 +3,7 @@ import { cn } from '../utils'
 import { useCallback, useState } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { Upload, Loader2 } from 'lucide-react'
-import { getFileExt, switchy } from '@shared/shared'
+import { getFileExt, switchy } from '@shared'
 import toast from './Toast'
 
 const mbSizeLimit = 20

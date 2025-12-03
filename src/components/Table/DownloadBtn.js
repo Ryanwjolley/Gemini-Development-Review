@@ -5,7 +5,7 @@ import { Download } from 'lucide-react'
 import Tooltip from '../Tooltip'
 import Button from '../Button'
 import toast from '../Toast'
-import { csvify } from '@shared/shared'
+import { csvify } from '@shared'
 
 const DownloadBtn = ({
   fileExport,

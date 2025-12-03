@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useSearchParams } from 'react-router'
 import { passwordResetFromEmailLink } from '../fire'
-import { passwordInput } from '@shared/shared'
+import { passwordInput } from '@shared'
 import toast from './Toast'
 import Button from './Button'
 import PasswordInput from './PasswordInput'

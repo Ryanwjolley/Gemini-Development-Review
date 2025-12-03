@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { getState } from '../globalState'
-import { permissions, permissionGroups } from '@shared/shared'
+import { permissions, permissionGroups } from '@shared'
 
 // Note it displays if ANY permission is in list unless 'every' = true
 export const hasPermissionUser = (user, perm, { every = false } = {}) => {

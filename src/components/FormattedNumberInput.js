@@ -1,4 +1,4 @@
-import { numberFormats } from '@shared/shared'
+import { numberFormats } from '@shared'
 import _ from 'lodash'
 import { NumericFormat } from 'react-number-format'
 

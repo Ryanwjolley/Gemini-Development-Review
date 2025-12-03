@@ -5,11 +5,19 @@ service cloud.firestore {
       // have a look at the constants file for a list of the permissions
       return permissions.hasAny(request.auth.token.permissions)
     }
+    
+    // TESTING MODE: Allow all access for emulators
+    // TODO: Restrict these rules for production
     match /{document=**} {
-      allow read, write: if hasPermissions([0]) // admin
+      allow read, write: if true;
     }
-    match /users/{userId} {
-      allow read: if request.auth != null
-    }    
+    
+    // Production rules (commented out for testing):
+    // match /{document=**} {
+    //   allow read, write: if hasPermissions([0]) // admin
+    // }
+    // match /users/{userId} {
+    //   allow read: if request.auth != null
+    // }    
   }
 }

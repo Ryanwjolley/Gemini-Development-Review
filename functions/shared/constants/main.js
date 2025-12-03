@@ -8,6 +8,23 @@ dayjs.extend(customParseFormat)
 
 const dateStrFormat = 'YYYY-MM-DD'
 
+const numberFormats = {
+  number: 'number',
+  currency: 'currency',
+  percent: 'percent',
+  unformatted: 'unformatted',
+}
+
+const exportFileTypes = {
+  pdf: 'pdf',
+  png: 'png',
+}
+
+const resultsPageSize = 20
+
 module.exports = {
   dateStrFormat,
+  numberFormats,
+  exportFileTypes,
+  resultsPageSize,
 }

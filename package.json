@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@floating-ui/react": "^0.27.16",
-    "@shared/shared": "file:./functions/shared",
+    "shared": "file:./functions/shared",
     "axios": "^1.12.2",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.18",
@@ -71,6 +71,7 @@
     "autoprefixer": "^10.4.21",
     "chalk": "^4.1.2",
     "cross-env": "^10.1.0",
+    "firebase-admin": "^13.6.0",
     "inquirer": "^8.2.6",
     "postcss": "^8.5.6",
     "react": "^19.2.0",

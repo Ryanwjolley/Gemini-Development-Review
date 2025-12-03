@@ -6,7 +6,7 @@ import Table from './Table'
 import Modal from './Modal'
 import Button from './Button'
 import Badge from './Badge'
-import { format } from '@shared/shared'
+import { format } from '@shared'
 
 const ErrorManagerBtn = () => {
   const [deletingId, setDeletingId] = useState(null)

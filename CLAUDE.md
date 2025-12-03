@@ -1,6 +1,29 @@
 # Project overview
 
-Info about project here.
+**eReviewHub** - Municipal Application Review Platform
+
+eReviewHub is a comprehensive web application designed for cities to manage and review various types of permit applications (building permits, business licenses, development permits, etc.). The system supports three main user roles:
+
+- **Public Users**: Submit applications and track their status
+- **City Users**: Manage applications for their city, create custom forms, and assign reviewers
+- **Reviewers**: Review assigned applications and provide feedback
+
+## Key Features
+
+- **Multi-role Authentication**: Role-based access control with different permissions for Public, City Users, and Reviewers
+- **Custom Form Builder**: City users can create custom application forms with various field types (text, dropdown, checkboxes, date pickers, file uploads, etc.)
+- **Application Management**: Submit, review, and track applications through their lifecycle
+- **Review Workflow**: Assign reviewers, add review notes, and manage application status
+- **Document Management**: Upload and manage supporting documents for applications
+- **Dashboard Analytics**: View statistics and recent activity at a glance
+- **Status Tracking**: Real-time status updates (Pending, In Review, Needs Information, Approved, Rejected)
+
+## Style Guidelines
+
+- **Primary color**: Deep teal (#008080) for a professional and trustworthy feel
+- **Background color**: Light gray (#F0F0F0) to ensure readability and a clean interface
+- **Accent color**: Warm gold (#D4AF37) for call-to-action buttons and important notifications
+- **Body and headline font**: 'Inter' for a modern and neutral user experience
 
 # Tech/Architecture
 
@@ -36,6 +59,19 @@ These files contain API keys, database URLs, and configuration for external serv
 - Functions access these values via `process.env.VARIABLE_NAME`
 - For local development with emulators, use `npm run serve:emulators`
 
+### Frontend Environment Variables (Vite)
+
+For the React frontend, create a `.env.development` file in the root directory:
+
+```
+VITE_USE_EMULATORS=true
+VITE_USE_MOCK_AUTH=true
+VITE_FIREBASE_PROJECT_ID=repo-template-demo
+```
+
+- `VITE_USE_EMULATORS`: Set to `true` to use Firebase emulators
+- `VITE_USE_MOCK_AUTH`: Set to `true` to bypass authentication for testing (allows switching between test users)
+
 # Development guidelines
 
 - avoid `typeof` when possible.
@@ -54,6 +90,30 @@ These files contain API keys, database URLs, and configuration for external serv
 - Destructure variables when using them as much as possible, rather than `data.thing`
 - Put re-used strings in a constants object when it pertains to things like menus, tabs, id prefixes, and so on. For example, `tabs = { profile: 'profile', settings: 'settings' }` and then use like `disabled={activeTab === tabs.profile}`
 - Use shorthand syntax for object properties, so `{ name }`, not `{ name: name }`
+
+## eReviewHub Specific
+
+### Data Collections
+
+- **applications**: Application submissions with status tracking
+- **forms**: Custom form definitions created by city users
+- **reviews**: Review notes and feedback on applications
+- **users**: User accounts with role-based access
+
+### User Roles
+
+- **Public**: Can submit applications and view their own submissions
+- **City User**: Can manage applications for their city, create forms, assign reviewers
+- **Reviewer**: Can review assigned applications and provide feedback
+- **Admin**: Full system access
+
+### Key Components
+
+- `Dashboard.js`: Overview with statistics and recent applications
+- `Applications.js`: List view of applications with filtering
+- `ApplicationDetail.js`: Detailed view with tabs (Details, Documents, Reviews)
+- `Forms.js`: Form management and listing
+- `Settings.js`: User profile and preferences (includes mock auth switcher for testing)
 
 ## Style/UI/UX
 

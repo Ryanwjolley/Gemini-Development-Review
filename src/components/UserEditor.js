@@ -1,13 +1,13 @@
 import _ from 'lodash'
 import api from '../api'
 import { useSetState } from '../utils'
-import { permissionGroupNames } from '@shared/shared'
+import { permissionGroupNames } from '@shared'
 import ToggleSwitch from './ToggleSwitch'
 import { SelectSimple } from './Select'
 import Button from './Button'
 import Input from './Input'
 import toast from './Toast'
-import { validateEmail } from '@shared/shared'
+import { validateEmail } from '@shared'
 
 const UserEditor = ({
   newUser,

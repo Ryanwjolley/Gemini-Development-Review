@@ -2,7 +2,7 @@ import { cn } from '../utils'
 import _ from 'lodash'
 import { Link, useLocation } from 'react-router'
 import { signOut } from '../fire'
-import { permissions } from '@shared/shared'
+import { permissions } from '@shared'
 import { hasPermission } from './Permission'
 import { useGlobalState } from '../globalState'
 import Tooltip from './Tooltip'
@@ -12,7 +12,7 @@ import toast from './Toast'
 import { useState } from 'react'
 import Dropdown from './Dropdown'
 import { useWindowDimensions } from '../utils'
-import { Construction, Users, MoreVertical, User, LogOut } from 'lucide-react'
+import { Construction, Users, MoreVertical, User, LogOut, LayoutDashboard, FileText, FolderOpen, Settings as SettingsIcon } from 'lucide-react'
 // import routes from '../routes'
 
 const Icon = ({ className, isCollapsed }) => (
@@ -143,32 +143,72 @@ const Sidebar = ({ isCollapsed, sidebarWidth, toggleSidebar }) => {
               </Link>
             </div>
           )}
-          {/* {hasPermission(permissions.admin) && ( */}
           <Link
             className={cn(
               'flex items-center gap-2 py-2 px-3 rounded transition-colors hover:bg-gray-100 text-gray-900 no-underline',
               {
-                activeChild: _.isEqual(location.pathname, '/users'),
+                'bg-blue-50 text-blue-600': location.pathname === '/dashboard' || location.pathname === '/',
               }
             )}
-            to="/users"
+            to="/dashboard"
           >
-            <Users size={20} />
-            {!isCollapsed && <span>Users</span>}
+            <LayoutDashboard size={20} />
+            {!isCollapsed && <span>Dashboard</span>}
           </Link>
-          {/* )} */}
+          
           <Link
             className={cn(
               'flex items-center gap-2 py-2 px-3 rounded transition-colors hover:bg-gray-100 text-gray-900 no-underline',
               {
-                activeChild: _.isEqual(location.pathname, '/demo'),
+                'bg-blue-50 text-blue-600': location.pathname.startsWith('/dashboard/applications'),
               }
             )}
-            to="/demo"
+            to="/dashboard/applications"
           >
-            <Users size={20} />
-            {!isCollapsed && <span>Demo</span>}
+            <FileText size={20} />
+            {!isCollapsed && <span>Applications</span>}
           </Link>
+          
+          <Link
+            className={cn(
+              'flex items-center gap-2 py-2 px-3 rounded transition-colors hover:bg-gray-100 text-gray-900 no-underline',
+              {
+                'bg-blue-50 text-blue-600': location.pathname.startsWith('/dashboard/forms'),
+              }
+            )}
+            to="/dashboard/forms"
+          >
+            <FolderOpen size={20} />
+            {!isCollapsed && <span>Forms</span>}
+          </Link>
+          
+          <Link
+            className={cn(
+              'flex items-center gap-2 py-2 px-3 rounded transition-colors hover:bg-gray-100 text-gray-900 no-underline',
+              {
+                'bg-blue-50 text-blue-600': location.pathname === '/dashboard/settings',
+              }
+            )}
+            to="/dashboard/settings"
+          >
+            <SettingsIcon size={20} />
+            {!isCollapsed && <span>Settings</span>}
+          </Link>
+
+          {hasPermission([permissions.admin]) && (
+            <Link
+              className={cn(
+                'flex items-center gap-2 py-2 px-3 rounded transition-colors hover:bg-gray-100 text-gray-900 no-underline mt-4',
+                {
+                  'bg-blue-50 text-blue-600': _.isEqual(location.pathname, '/users'),
+                }
+              )}
+              to="/users"
+            >
+              <Users size={20} />
+              {!isCollapsed && <span>Users</span>}
+            </Link>
+          )}
         </div>
       </div>
 

@@ -1,4 +1,4 @@
-import { getById } from '@shared/shared'
+import { getById } from '@shared'
 import { forwardRef } from 'react'
 import { useGlobalState } from '../globalState'
 import { SelectSimple } from './Select'

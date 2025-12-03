@@ -1,4 +1,4 @@
-import { resultsPageSize } from '@shared/shared'
+import { resultsPageSize } from '@shared'
 import { cloneElement, forwardRef, useEffect, useRef } from 'react'
 
 const InfiniteScroll = forwardRef(
