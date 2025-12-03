@@ -1,11 +1,13 @@
 import _ from 'lodash';
 import { db } from './index';
 import { collection, query, where, getDocs, getDoc, doc, addDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
+import { withMockData } from './useMockData';
+import * as mockData from './mockData';
 
 const applicationsCollection = 'applications';
 const reviewsCollection = 'reviews';
 
-export const getApplications = async ({ city, status, applicantId, assignedReviewerId } = {}) => {
+const getApplicationsReal = async ({ city, status, applicantId, assignedReviewerId } = {}) => {
 	const applicationsRef = collection(db, applicationsCollection);
 	const q = query(applicationsRef);
 
@@ -32,7 +34,9 @@ export const getApplications = async ({ city, status, applicantId, assignedRevie
 	return apps;
 };
 
-export const getApplicationById = async (id) => {
+export const getApplications = withMockData(mockData.mockGetApplications, getApplicationsReal);
+
+const getApplicationByIdReal = async (id) => {
 	const docRef = doc(db, applicationsCollection, id);
 	const docSnap = await getDoc(docRef);
 	
@@ -42,7 +46,9 @@ export const getApplicationById = async (id) => {
 	return null;
 };
 
-export const createApplication = async (applicationData, userId) => {
+export const getApplicationById = withMockData(mockData.mockGetApplicationById, getApplicationByIdReal);
+
+const createApplicationReal = async (applicationData, userId) => {
 	const docRef = await addDoc(collection(db, applicationsCollection), {
 		...applicationData,
 		dateCreated: serverTimestamp(),
@@ -53,7 +59,9 @@ export const createApplication = async (applicationData, userId) => {
 	return docRef.id;
 };
 
-export const updateApplication = async (id, updates, userId) => {
+export const createApplication = withMockData(mockData.mockCreateApplication, createApplicationReal);
+
+const updateApplicationReal = async (id, updates, userId) => {
 	const docRef = doc(db, applicationsCollection, id);
 	await updateDoc(docRef, {
 		...updates,
@@ -62,12 +70,14 @@ export const updateApplication = async (id, updates, userId) => {
 	});
 };
 
+export const updateApplication = withMockData(mockData.mockUpdateApplication, updateApplicationReal);
+
 export const deleteApplication = async (id) => {
 	const docRef = doc(db, applicationsCollection, id);
 	await deleteDoc(docRef);
 };
 
-export const assignReviewers = async (applicationId, reviewerIds, userId) => {
+const assignReviewersReal = async (applicationId, reviewerIds, userId) => {
 	const docRef = doc(db, applicationsCollection, applicationId);
 	const docSnap = await getDoc(docRef);
 	
@@ -83,7 +93,9 @@ export const assignReviewers = async (applicationId, reviewerIds, userId) => {
 	}
 };
 
-export const getReviewsByApplicationId = async (applicationId) => {
+export const assignReviewers = withMockData(mockData.mockAssignReviewers, assignReviewersReal);
+
+const getReviewsByApplicationIdReal = async (applicationId) => {
 	const reviewsRef = collection(db, reviewsCollection);
 	const q = query(reviewsRef, where('applicationId', '==', applicationId));
 	const snapshot = await getDocs(q);
@@ -95,7 +107,9 @@ export const getReviewsByApplicationId = async (applicationId) => {
 	return reviews;
 };
 
-export const addReview = async (reviewData, userId) => {
+export const getReviewsByApplicationId = withMockData(mockData.mockGetReviewsByApplicationId, getReviewsByApplicationIdReal);
+
+const addReviewReal = async (reviewData, userId) => {
 	const docRef = await addDoc(collection(db, reviewsCollection), {
 		...reviewData,
 		dateCreated: serverTimestamp(),
@@ -105,4 +119,6 @@ export const addReview = async (reviewData, userId) => {
 	});
 	return docRef.id;
 };
+
+export const addReview = withMockData(mockData.mockAddReview, addReviewReal);
 

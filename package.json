@@ -34,6 +34,7 @@
     "start": "npm run favicon:dev && cp .env.dev .env && VITE_API_URL_OVERRIDE=http://localhost:5001/repo-template-demo-dev/us-central1/api vite --port 3010",
     "build:dev": "npm run favicon:dev && cp .env.dev .env && rm -rf ./build && vite build",
     "build:live": "npm run favicon:live && cp .env.default .env && rm -rf ./build && vite build",
+    "build:netlify": "vite build --mode production",
     "deploy:live": "firebase use default && npm run build:live && firebase deploy",
     "deploy:live:hosting": "firebase use default && npm run build:live && firebase deploy --only hosting",
     "deploy:dev": "firebase use dev && npm run build:dev && firebase deploy --only functions:api,hosting",

@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import path from 'path'
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
   resolve: {
     alias: {
@@ -24,6 +24,11 @@ export default defineConfig({
     },
   },
   envPrefix: 'VITE_',
+  define: {
+    // Set mock data mode for production builds
+    'import.meta.env.VITE_USE_MOCK_DATA': mode === 'production' ? '"true"' : 'undefined',
+    'import.meta.env.VITE_USE_MOCK_AUTH': mode === 'production' ? '"true"' : 'undefined',
+  },
   esbuild: {
     loader: 'jsx',
     include: /src\/.*\.[jt]sx?$/,
@@ -37,4 +42,4 @@ export default defineConfig({
       },
     },
   },
-})
+}))

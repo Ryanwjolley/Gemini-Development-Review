@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import { db } from './index';
 import { collection, query, getDocs, getDoc, doc, addDoc, updateDoc, deleteDoc, serverTimestamp } from 'firebase/firestore';
+import { withMockData } from './useMockData';
+import * as mockData from './mockData';
 
 const formsCollection = 'forms';
 
-export const getForms = async ({ city } = {}) => {
+const getFormsReal = async ({ city } = {}) => {
 	const formsRef = collection(db, formsCollection);
 	const q = query(formsRef);
 
@@ -22,7 +24,9 @@ export const getForms = async ({ city } = {}) => {
 	return forms;
 };
 
-export const getFormById = async (id) => {
+export const getForms = withMockData(mockData.mockGetForms, getFormsReal);
+
+const getFormByIdReal = async (id) => {
 	const docRef = doc(db, formsCollection, id);
 	const docSnap = await getDoc(docRef);
 	
@@ -32,7 +36,9 @@ export const getFormById = async (id) => {
 	return null;
 };
 
-export const createForm = async (formData, userId) => {
+export const getFormById = withMockData(mockData.mockGetFormById, getFormByIdReal);
+
+const createFormReal = async (formData, userId) => {
 	const docRef = await addDoc(collection(db, formsCollection), {
 		...formData,
 		version: 1,
@@ -45,7 +51,9 @@ export const createForm = async (formData, userId) => {
 	return docRef.id;
 };
 
-export const updateForm = async (id, updates, userId) => {
+export const createForm = withMockData(mockData.mockCreateForm, createFormReal);
+
+const updateFormReal = async (id, updates, userId) => {
 	const docRef = doc(db, formsCollection, id);
 	await updateDoc(docRef, {
 		...updates,
@@ -54,8 +62,12 @@ export const updateForm = async (id, updates, userId) => {
 	});
 };
 
-export const deleteForm = async (id) => {
+export const updateForm = withMockData(mockData.mockUpdateForm, updateFormReal);
+
+const deleteFormReal = async (id) => {
 	const docRef = doc(db, formsCollection, id);
 	await deleteDoc(docRef);
 };
+
+export const deleteForm = withMockData(mockData.mockDeleteForm, deleteFormReal);
 
