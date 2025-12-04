@@ -77,7 +77,11 @@ export const getMockUser = () => {
     return currentMockUser
   }
   
-  return null
+  // Auto-login with default user for testing (bypass login page)
+  // Users can switch roles via Settings page
+  currentMockUser = mockUsers[1] // Jane Springfield (City User - Springfield)
+  sessionStorage.setItem('mockUser', JSON.stringify(currentMockUser))
+  return currentMockUser
 }
 
 export const switchMockUser = (userId) => {

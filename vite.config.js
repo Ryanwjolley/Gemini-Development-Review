@@ -25,9 +25,9 @@ export default defineConfig(({ mode }) => ({
   },
   envPrefix: 'VITE_',
   define: {
-    // Set mock data mode for production builds
-    'import.meta.env.VITE_USE_MOCK_DATA': mode === 'production' ? '"true"' : 'undefined',
-    'import.meta.env.VITE_USE_MOCK_AUTH': mode === 'production' ? '"true"' : 'undefined',
+    // Enable mock data/auth for all modes (testing without Firebase)
+    'import.meta.env.VITE_USE_MOCK_DATA': '"true"',
+    'import.meta.env.VITE_USE_MOCK_AUTH': '"true"',
   },
   esbuild: {
     loader: 'jsx',
